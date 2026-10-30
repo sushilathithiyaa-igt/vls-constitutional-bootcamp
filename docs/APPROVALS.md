@@ -1,20 +1,30 @@
 # Approvals tracker
 
-Course-specific details NOT established by the poster or brochure. Do not render on the page until marked APPROVED with a source.
+Status as of 2026-10-30. CONFIRMED = stated by the project owner in chat. Everything PENDING must not be rendered as fact on the page.
 
+## Confirmed by the project owner
+| Item | Value | Notes |
+| --- | --- | --- |
+| Course date | Friday, 13 November 2026 | Shown in hero, registration card, how-it-works, FAQ, closing CTA, metadata and share card. |
+| Time | 6:00 PM – 9:00 PM IST | "Evening" assumed from the poster's "6 to 9". |
+| Duration | 3 Hours | |
+| Registration fee | ₹499 | Tax treatment NOT stated and not assumed; the page does not mention tax. |
+| Primary source | The course poster (13 topics) | The brochure is secondary context only. |
+| Reuse of academy branding and general classroom photographs | Authorised | Logo, `classroom-wide-session`, `classroom-faculty-teaching`, `classroom-students-notes`, `academy-interior`. Used as general academy photographs, never captioned as pictures of this boot camp. |
+| Course enquiry / academy phone | +91 95000 25216 / +91 95002 07811 | |
+| Privacy Policy / Terms URLs | https://www.vlslawacademy.com/privacy-policy and /terms-and-conditions | Both returned 200 on 2026-10-30. |
+
+## Still pending (not rendered as fact)
 | Item | Status | Notes |
 | --- | --- | --- |
-| Fee and payment arrangements | PENDING | ₹499 on the DRT page belongs to that course. No payment flow until approved. |
-| Start date, class timings, total duration | PENDING | 20 Sept 2026 on the DRT page is NOT this course. |
-| Delivery mode (online / offline / hybrid) | PENDING | |
-| Assigned faculty / instructor profile | PENDING | Dr. Sivakumar Sivaprakasam is DRT/SARFAESI faculty; do not reuse without confirmation. |
-| Recordings, study material, certificates, assignments | PENDING | FAQ says "confirm with the academy". |
-| Seat limits, discounts, enrolment deadlines | PENDING | No scarcity copy. |
-| Permission to reuse classroom photographs | PENDING | See ASSET_MANIFEST.md. |
-| Lead destination (endpoint / CRM / sheet / email) | PENDING | Implemented as `LEAD_WEBHOOK_URL` (+ optional `LEAD_WEBHOOK_TOKEN`): JSON POST, payload in lib/enquiry.ts. Unset = WhatsApp handoff only, never claimed as saved. VLS must supply a destination that accepts this JSON (or we adapt the payload). |
-| Course identifier for lead tagging | PROPOSED | Sent as `course: "constitutional-law-bootcamp"` in every lead. VLS to confirm the value their system expects. |
-| Final page domain / canonical URL | PENDING | Proposed: a vlslawacademy.com subdomain; VLS to choose. Set `NEXT_PUBLIC_SITE_URL` (https). A Vercel production build now FAILS without it; previews/staging are noindex. |
-| Favicon and share-card artwork | PLACEHOLDER | `app/icon.svg` is a plain red "VLS" monogram and `app/opengraph-image.tsx` is a text-only card. Replace with the official VLS logo / approved artwork before launch. |
-| Privacy Policy / Terms URLs | VERIFIED | https://www.vlslawacademy.com/privacy-policy and /terms-and-conditions both return 200 (2026-10-30). |
-| Analytics / Meta Pixel IDs | PENDING | Other VLS pages use `fbq`; www uses GA `G-8W0EVH8CJT`. Do not reuse IDs without approval. |
-| Final publication sign-off | PENDING | Stays with the VLS team. |
+| Teaching mode (online / offline / hybrid) and venue | PENDING | FAQ tells visitors to confirm with the academy. |
+| Assigned faculty / instructor profile | PENDING | No faculty section. Do not name anyone from the reference pages. |
+| Recordings, study material, certificates | PENDING | FAQ: "confirm with the academy". |
+| Testimonials | NONE APPROVED | Testimonials on other VLS pages belong to other courses. |
+| Payment provider and payment link | PENDING | No payment is taken on the page. `aiforadvocates` loads Razorpay checkout, but no key, link or flow is reused here. |
+| Live lead destination | PENDING | `LEAD_WEBHOOK_URL` (+ optional `LEAD_WEBHOOK_TOKEN`): JSON POST, payload in `lib/enquiry.ts`. Unset = WhatsApp handoff only, never claimed as saved. |
+| Course identifier | PROPOSED | `constitutional-law-bootcamp`, sent with `courseSession: "2026-11-13"` and `feeInr: 499`. VLS to confirm what its system expects. |
+| Final production domain | PENDING | Set `NEXT_PUBLIC_SITE_URL` (https). A Vercel production build fails without it; previews are noindex. |
+| Analytics / Meta Pixel IDs | PENDING | Other VLS pages use `fbq`/GA; none are reused here. |
+| Real-device and VoiceOver checks | NOT DONE | Automated axe and keyboard tests pass; no manual screen-reader or real-phone pass has been performed. |
+| Final VLS publication approval | PENDING | |

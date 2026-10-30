@@ -1,4 +1,4 @@
-import { COURSE_ID } from "./content";
+import { COURSE_ID, course } from "./content";
 import { normalizeIndianMobile, validateEnquiry, type EnquiryErrors, type EnquiryInput } from "./validation";
 
 export const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
@@ -76,6 +76,8 @@ export async function handleEnquiry(request: Request): Promise<Response> {
 
   const payload = {
     course: COURSE_ID,
+    courseSession: course.dateISO,
+    feeInr: course.feeInr,
     name: input.name,
     mobile: normalizeIndianMobile(input.mobile),
     email: input.email,

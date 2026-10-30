@@ -18,23 +18,47 @@ export const contact = {
 export const whatsappLink = (message: string) =>
   `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-export const WHATSAPP_DEFAULT_MESSAGE =
-  "Hello VLS Law Academy, I would like details about the Constitutional Law & Practice Boot Camp.";
+
+/** Confirmed by the project owner (see docs/APPROVALS.md). Every place that shows these facts reads from here. */
+export const course = {
+  name: "Constitutional Law & Practice Boot Camp",
+  academy: "VLS Law Academy",
+  dateISO: "2026-11-13",
+  dateLong: "Friday, 13 November 2026",
+  dateShort: "13 November 2026",
+  time: "6:00 PM – 9:00 PM IST",
+  duration: "3 Hours",
+  fee: "₹499",
+  feeInr: 499,
+} as const;
+
+export const WHATSAPP_DEFAULT_MESSAGE = `Hello VLS Law Academy, I would like to register for the ${course.name} on ${course.dateShort} (${course.fee}). Please share the payment and confirmation details.`;
 
 export const hero = {
-  eyebrow: "VLS Law Academy | Practical Legal Training",
-  title: "Constitutional Law & Practice Boot Camp",
+  eyebrow: "VLS Law Academy · Practical Legal Training",
+  titleLead: "Constitutional Law",
+  titleAccent: "& Practice Boot Camp",
   tagline: "Understand the Constitution. Learn the Remedies. Explore Court Practice.",
-  body: [
-    "Constitutional law is more than understanding Articles and legal principles. It is about knowing how constitutional rights are protected, how petitions are brought before the courts, and how legal proceedings move through the judicial system.",
-    "Join VLS Law Academy's focused boot camp to strengthen your understanding of constitutional remedies, writ proceedings, appellate jurisdiction and important petition procedures before the Supreme Court and High Courts.",
+  body: "Explore the constitutional remedies, petitions, jurisdictional principles, and judicial procedures relevant to practice before the Supreme Court and High Courts.",
+  primaryCta: `Register for ${course.fee}`,
+  primaryNote: "Starts your registration enquiry. The academy shares payment and confirmation details.",
+  secondaryCta: "Explore What You'll Learn",
+  facts: [
+    { label: "Date", value: course.dateLong },
+    { label: "Time", value: course.time },
+    { label: "Duration", value: course.duration },
+    { label: "Fee", value: course.fee },
   ],
-  primaryCta: "Enquire / Register Now",
-  secondaryCta: "Explore the Syllabus",
-  highlights: [
-    { value: "13", label: "Key topics" },
-    { value: "6", label: "Syllabus units" },
-    { value: "2", label: "Court systems explored" },
+} as const;
+
+export const matters = {
+  heading: "Why Constitutional Practice Matters",
+  intro:
+    "Knowing a constitutional provision is the beginning. Practice depends on knowing which remedy fits, which court has jurisdiction and how the proceeding moves.",
+  points: [
+    { title: "Choosing the remedy", body: "A writ, an appeal, a review or a curative petition each has its own purpose and limits." },
+    { title: "Knowing the forum", body: "The Supreme Court and the High Courts exercise different jurisdictions." },
+    { title: "Following the procedure", body: "Petitions move through filing, categorisation and hearing under defined rules." },
   ],
 } as const;
 
@@ -48,89 +72,83 @@ export const problem = {
     "What is the purpose of a review petition?",
     "How do the jurisdiction and powers of the Supreme Court and High Courts differ?",
   ],
-  outro:
-    "The boot camp is designed to connect constitutional concepts with the petitions, remedies and procedures encountered in legal practice.",
   closing:
     "Knowing the provision is the beginning. Understanding its practical application is the next step.",
 } as const;
 
-export const curriculum = {
-  heading: "Explore Constitutional Law Through Six Core Learning Areas.",
-  units: [
-    {
-      n: "01",
-      title: "Constitutional Foundations",
-      body: "Understand Fundamental Rights, Directive Principles of State Policy, Fundamental Duties, constitutional doctrines, Union and State institutions, Centre–State relations, emergency provisions and constitutional amendments.",
-    },
-    {
-      n: "02",
-      title: "Writ Jurisdiction & Public Interest Litigation",
-      body: "Study writ petitions under Article 226, the Madras High Court Writ Rules, 2021, constitutional writ remedies, writ miscellaneous petitions, filing procedures, categorisation of proceedings and PILs.",
-    },
-    {
-      n: "03",
-      title: "Election Petitions",
-      body: "Explore the legal framework for election disputes involving legislative bodies and local authorities, including MLA, MLC, Lok Sabha, Rajya Sabha, Panchayat and Municipal elections.",
-    },
-    {
-      n: "04",
-      title: "Original Jurisdiction of the Supreme Court",
-      body: "Learn about the Supreme Court's original jurisdiction concerning constitutional disputes between the Union and States, or between States.",
-    },
-    {
-      n: "05",
-      title: "Special Leave Jurisdiction",
-      body: "Understand the purpose and constitutional framework of Special Leave Petitions before the Supreme Court under Article 136.",
-    },
-    {
-      n: "06",
-      title: "Appellate Jurisdiction & Constitutional Appeals",
-      body: "Explore civil and criminal appeals before the Supreme Court and High Courts, constitutional appellate remedies, and the relationship between different levels of judicial review.",
-    },
-  ],
-} as const;
-
+// The 13 key topics, in the poster's order and with its terminology. Group ids only organise the display.
 export const topics = {
-  heading: "Constitutional Remedies & Petition Practice.",
+  heading: "All 13 Key Topics Covered",
   intro:
-    "Explore the major constitutional remedies and petition categories referenced in the boot camp, including their purpose, relevant jurisdiction and role in legal proceedings.",
+    "The boot camp explores these constitutional remedies and petition categories: their purpose, relevant jurisdiction and role in legal proceedings.",
+  note: "A three-hour session offers a structured overview of each topic. It is not a full course on every petition.",
   clusters: [
     {
       id: "writs",
       title: "Writs & Original Remedies",
       items: [
-        { name: "Writ Petitions & Writ Appeals", desc: "Constitutional writ remedies and related appellate procedures" },
-        { name: "Public Interest Litigations (PILs)", desc: "Proceedings concerning public-interest matters" },
-        { name: "Original Petitions", desc: "Original-jurisdiction matters before the appropriate Supreme Court or High Court forum" },
-        { name: "Supervisory Petitions", desc: "High Court supervisory jurisdiction under Article 227" },
+        { n: "01", name: "Writ Petitions / Writ Appeals", desc: "Constitutional writ remedies and related appellate procedures" },
+        { n: "02", name: "Public Interest Litigations (PILs)", desc: "Proceedings concerning public-interest matters" },
+        { n: "05", name: "Original Petition – Supreme Court & High Court", desc: "Original-jurisdiction matters before the appropriate forum" },
+        { n: "12", name: "Supervisory Petition (Article 227)", desc: "High Court supervisory jurisdiction" },
       ],
     },
     {
       id: "appeals",
       title: "Appeals & Corrective Remedies",
       items: [
-        { name: "Special Leave Petitions (SLPs)", desc: "Discretionary special leave jurisdiction of the Supreme Court" },
-        { name: "Constitutional Appeals", desc: "Appeals involving constitutional questions and appellate remedies" },
-        { name: "Review Petitions", desc: "Applications seeking review of judicial decisions under applicable law and rules" },
-        { name: "Curative Petitions", desc: "The exceptional curative jurisdiction of the Supreme Court" },
-        { name: "Certificate Petitions", desc: "Constitutional certification relating to appeals under Article 134A" },
+        { n: "03", name: "Special Leave Petitions", desc: "Discretionary special leave jurisdiction of the Supreme Court" },
+        { n: "04", name: "Constitutional Appeals", desc: "Appeals involving constitutional questions and appellate remedies" },
+        { n: "06", name: "Review Petitions", desc: "Applications seeking review of judicial decisions under applicable law and rules" },
+        { n: "07", name: "Curative Petition", desc: "The exceptional curative jurisdiction of the Supreme Court" },
+        { n: "13", name: "Certificate Petition (Article 134A)", desc: "Constitutional certification relating to appeals" },
       ],
     },
     {
       id: "special",
       title: "Special Constitutional Proceedings",
       items: [
-        { name: "Election Petitions", desc: "Statutory challenges involving election disputes" },
-        { name: "Advisory Reference", desc: "The Supreme Court's advisory jurisdiction under Article 143" },
-        { name: "Transfer Petitions", desc: "Procedures for transferring cases between appropriate courts" },
-        { name: "Contempt Petitions", desc: "Proceedings relating to contempt of court" },
+        { n: "08", name: "Transfer Petitions", desc: "Procedures for transferring cases between appropriate courts" },
+        { n: "09", name: "Contempt Petitions", desc: "Proceedings relating to contempt of court" },
+        { n: "10", name: "Election Petitions", desc: "Statutory challenges involving election disputes, from Panchayat and Municipal to MLA, MLC, Lok Sabha and Rajya Sabha elections" },
+        { n: "11", name: "Advisory Reference", desc: "The Supreme Court's advisory jurisdiction" },
+      ],
+    },
+  ],
+} as const;
+
+// Concise supporting context from the brochure's Constitutional Laws and Practice module.
+export const jurisdiction = {
+  heading: "Constitutional Remedies and Jurisdiction",
+  intro:
+    "The topics sit within the constitutional framework: Fundamental Rights, Directive Principles, Fundamental Duties, Centre–State relations, emergency provisions and amendments. These are the forums and provisions the session works through.",
+  courts: [
+    {
+      name: "Supreme Court",
+      items: [
+        "Original jurisdiction in disputes between the Union and States, or between States",
+        "Special leave jurisdiction: Article 136",
+        "Civil and criminal appeals; constitutional appeals",
+        "Advisory jurisdiction: Article 143",
+        "Certificate relating to appeals: Article 134A",
+        "Review and curative jurisdiction",
+      ],
+    },
+    {
+      name: "High Courts",
+      items: [
+        "Writ jurisdiction: Article 226",
+        "Madras High Court Writ Rules, 2021: writ miscellaneous petitions, filing procedures, categorisation of proceedings",
+        "Public interest litigation",
+        "Supervisory jurisdiction: Article 227",
+        "Writ appeals and appellate remedies",
       ],
     },
   ],
 } as const;
 
 export const takeaways = {
-  heading: "Build Clarity Beyond the Bare Act.",
+  heading: "What Participants Will Learn",
   items: [
     "Understand the constitutional foundations relevant to legal practice.",
     "Distinguish between important petitions and judicial remedies.",
@@ -144,7 +162,7 @@ export const takeaways = {
 } as const;
 
 export const audience = {
-  heading: "Who should attend?",
+  heading: "Who Should Attend",
   items: [
     { title: "Law Students", body: "Build early familiarity with constitutional remedies and court proceedings." },
     { title: "Law Graduates", body: "Bridge the gap between academic study and procedural understanding." },
@@ -160,28 +178,47 @@ export const whyVls = {
   points: [
     { title: "Conceptual clarity", body: "Understand the legal foundations before exploring their practical application." },
     { title: "Practice-oriented perspective", body: "Connect constitutional principles to real judicial remedies and procedures." },
-    { title: "An established legal-learning environment", body: "Learn in a setting built around faculty-led classroom teaching." },
+    { title: "Classroom learning", body: "Faculty-led teaching in an academy built around legal practice." },
   ],
-} as const;
-
-export const environment = {
-  heading: "Learn With VLS Law Academy.",
-  body: "Constitutional practice becomes easier to approach when legal concepts are explained alongside the jurisdiction, remedies and procedural framework of the courts.",
+  galleryCaption: "Photographs from VLS Law Academy classes and premises.",
 } as const;
 
 export const registration = {
-  heading: "Take the Next Step in Understanding Constitutional Practice.",
-  body: "Explore constitutional remedies, court jurisdiction and important petition procedures with VLS Law Academy.",
-  note: "Our team will contact you with the course schedule, fees and registration details.",
-  primaryCta: "Request Course Details",
+  heading: `Register for the Boot Camp`,
+  eyebrow: `Registration · ${course.fee}`,
+  body: `${course.dateLong}, ${course.time}.`,
+  note: `Submitting starts your registration enquiry. No payment is taken on this page: the academy will contact you with payment and confirmation details.`,
+  submit: "Submit Registration Enquiry",
   secondaryCta: "Enquire on WhatsApp",
   statuses: ["Law student", "Graduate", "Junior advocate", "Practising advocate", "Other"],
 } as const;
 
+export const howItWorks = {
+  heading: "How Registration Works",
+  steps: [
+    { title: "Submit your enquiry", body: "Use the form, WhatsApp or phone. It takes a minute." },
+    { title: "Get payment and confirmation details", body: `The academy contacts you with how to pay the ${course.fee} fee and confirm your place.` },
+    { title: "Join the session", body: `${course.dateLong}, ${course.time}.` },
+  ],
+} as const;
+
 export const faqs = [
+  { q: "When is the boot camp?", a: `${course.dateLong}, ${course.time} (${course.duration.toLowerCase()}).` },
+  {
+    q: "What is the registration fee?",
+    a: `${course.fee}. After you submit your registration enquiry, the academy will share the payment and confirmation details.`,
+  },
+  {
+    q: "How do I register?",
+    a: "Submit the registration form on this page, or message the academy on WhatsApp or call +91 95000 25216. Your place is confirmed by the academy, not by submitting the form.",
+  },
   {
     q: "What does the boot camp cover?",
-    a: "Constitutional foundations, writ proceedings, PILs, election petitions, original jurisdiction, SLPs, appeals and additional petition categories listed in the boot camp syllabus.",
+    a: "The 13 key topics listed on this page, from writ petitions and PILs to special leave, review, curative and other petitions before the Supreme Court and High Courts.",
+  },
+  {
+    q: "Will I master all 13 topics in three hours?",
+    a: "No. The session gives a structured overview of the remedies, jurisdictions and procedures. It is not a full course on each petition.",
   },
   {
     q: "Is this useful for law students?",
@@ -189,45 +226,50 @@ export const faqs = [
   },
   {
     q: "Does it include writ petitions?",
-    a: "Yes. Writ jurisdiction and the Madras High Court Writ Rules, 2021, are part of the brochure syllabus.",
+    a: "Yes. Writ petitions and writ appeals are topic 01, and the Madras High Court Writ Rules, 2021, are part of the writ jurisdiction material.",
   },
   {
-    q: "Are Supreme Court and High Court procedures covered?",
-    a: "Yes, within the constitutional-jurisdiction and petition topics specified in the course materials.",
-  },
-  {
-    q: "Will participants learn about review and curative petitions?",
-    a: "Both appear in the boot camp poster's topic list.",
-  },
-  {
-    q: "What are the class dates and fees?",
-    a: "Contact VLS Law Academy for the confirmed schedule, fee and registration information.",
+    q: "Is it online or in person?",
+    a: "Please confirm the teaching mode with the academy when you enquire: +91 95000 25216.",
   },
   {
     q: "Will there be recordings, materials or certificates?",
-    a: "Please confirm these inclusions with the academy before enrolment.",
+    a: "Please confirm these inclusions with the academy before registering.",
   },
 ] as const;
 
 export const finalCta = {
   heading: "Strengthen Your Constitutional Law Foundation.",
   body: "Move beyond memorising provisions. Build a clearer understanding of constitutional remedies, petitions and judicial procedure.",
-  cta: "Enquire About the Boot Camp",
+  cta: `Register for ${course.fee}`,
 } as const;
 
-// Photographs are pending VLS reuse approval (docs/APPROVALS.md). While `src` is null
-// the <Photo> component renders a neutral placeholder. Do not label as boot-camp photos.
+// Academy-owned photographs reused with the project owner's authorisation (docs/ASSET_MANIFEST.md).
+// They are general classroom/premises photographs, not pictures of this boot camp, and are never captioned as such.
 export const photos = {
   hero: {
-    src: null as string | null,
-    alt: "Faculty member explaining a point to a classroom of law learners at VLS Law Academy",
+    src: "/assets/vls/classroom/classroom-wide-session.jpg",
+    alt: "Faculty teaching a classroom of learners at VLS Law Academy",
+    width: 1500,
+    height: 1125,
+  },
+  teaching: {
+    src: "/assets/vls/classroom/classroom-faculty-teaching.jpg",
+    alt: "Faculty member addressing learners during a class at VLS Law Academy",
+    width: 2568,
+    height: 1444,
   },
   learners: {
-    src: null as string | null,
-    alt: "Law learners taking notes during a session at VLS Law Academy",
+    src: "/assets/vls/classroom/classroom-students-notes.jpg",
+    alt: "Learners taking notes during a session at VLS Law Academy",
+    width: 2568,
+    height: 1444,
   },
   academy: {
-    src: null as string | null,
-    alt: "Interior of the VLS Law Academy classroom with VLS branding",
+    src: "/assets/vls/classroom/academy-interior.jpg",
+    alt: "VLS Law Academy reception wall with the VLS Law Academy sign",
+    width: 1500,
+    height: 1125,
   },
+  logo: { src: "/assets/vls/brand/vls-logo.png", alt: "VLS Law Academy", width: 234, height: 234 },
 } as const;

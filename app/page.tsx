@@ -1,9 +1,10 @@
 import { Audience, WhyVls } from "@/components/AudienceAndVls";
-import { Curriculum } from "@/components/Curriculum";
 import { Faq, FinalCta, SiteFooter } from "@/components/FaqAndFooter";
 import { Hero } from "@/components/Hero";
+import { HowItWorks } from "@/components/HowItWorks";
+import { Jurisdiction } from "@/components/Jurisdiction";
+import { Matters } from "@/components/Matters";
 import { Problem } from "@/components/Problem";
-import { Registration } from "@/components/Registration";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StickyEnquiryBar } from "@/components/StickyEnquiryBar";
 import { Takeaways } from "@/components/Takeaways";
@@ -18,13 +19,14 @@ export default function Page() {
       <SiteHeader />
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
+        <Matters />
         <Problem />
-        <Curriculum />
         <Topics />
+        <Jurisdiction />
         <Takeaways />
         <Audience />
         <WhyVls />
-        <Registration />
+        <HowItWorks />
         <Faq />
         <FinalCta />
       </main>

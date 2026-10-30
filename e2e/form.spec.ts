@@ -1,7 +1,7 @@
 import { expect, fillValid, formAlert, mock, openedUrls, shot, test, type Lead } from "./fixtures";
 import { CONFIGURED_PORT, UNCONFIGURED_PORT } from "../playwright.config";
 
-const submit = (page: import("@playwright/test").Page) => page.getByRole("button", { name: /Request Course Details|Sending/ });
+const submit = (page: import("@playwright/test").Page) => page.getByRole("button", { name: /Submit Registration Enquiry|Sending/ });
 
 test.beforeEach(async () => {
   await mock.reset();
@@ -74,6 +74,8 @@ test.describe(`destination configured (simulated webhook on :${CONFIGURED_PORT})
     expect(leads[0].auth).toBe("Bearer e2e-test-token");
     expect(leads[0].body).toMatchObject({
       course: "constitutional-law-bootcamp",
+      courseSession: "2026-11-13",
+      feeInr: 499,
       name: "Asha Kumar",
       mobile: "9876543210",
       email: "asha@example.test",
@@ -126,6 +128,7 @@ test.describe(`no destination configured (:${UNCONFIGURED_PORT}, WhatsApp-only)`
     expect(text).toContain("Name: Asha Kumar");
     expect(text).toContain("Mobile: 9876543210");
     expect(text).toContain("Status: Law student");
+    expect(text).toMatch(/13 November 2026 \(₹499\)/);
 
     const fallbackLink = status.getByRole("link", { name: "open it with your details" });
     await expect(fallbackLink).toHaveAttribute("href", /^https:\/\/wa\.me\/919500025216\?text=/);

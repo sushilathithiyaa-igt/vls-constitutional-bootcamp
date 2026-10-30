@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/content";
+import { course, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/content";
 import { WhatsAppIcon } from "./ui";
 
 /** Compact bottom action on mobile. Hidden while the registration form or final CTA is on screen. */
@@ -28,7 +28,7 @@ export function StickyEnquiryBar() {
   return (
     <aside
       aria-label="Quick enquiry actions"
-      className={`fixed inset-x-0 bottom-0 z-30 border-t border-line bg-ivory/95 px-4 pt-3 backdrop-blur transition-transform duration-300 lg:hidden ${hidden ? "translate-y-full" : ""}`}
+      className={`fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white px-4 pt-3 shadow-[0_-4px_12px_rgba(0,0,0,0.08)] transition-transform duration-300 lg:hidden ${hidden ? "translate-y-full" : ""}`}
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
       aria-hidden={hidden}
     >
@@ -38,7 +38,7 @@ export function StickyEnquiryBar() {
           tabIndex={hidden ? -1 : 0}
           className="inline-flex min-h-12 flex-1 items-center justify-center bg-vls px-4 text-[15px] font-semibold text-white active:bg-vls-dark"
         >
-          Enquire Now
+          Register {course.fee}
         </a>
         <a
           href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}

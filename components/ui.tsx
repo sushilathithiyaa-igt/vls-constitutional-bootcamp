@@ -20,38 +20,32 @@ export function Container({ children, className = "" }: { children: ReactNode; c
   return <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>;
 }
 
-/**
- * Real VLS photograph when `src` is set; otherwise a neutral placeholder.
- * Photos are pending reuse approval (docs/APPROVALS.md).
- */
+/** Academy photograph from lib/content.ts `photos`, rendered locally through next/image. */
 export function Photo({
-  src,
-  alt,
+  photo,
   className = "",
   sizes,
   priority = false,
-  label,
+  position = "center",
 }: {
-  src: string | null;
-  alt: string;
+  photo: { src: string; alt: string };
   className?: string;
   sizes: string;
   priority?: boolean;
-  label: string;
+  position?: string;
 }) {
   return (
-    <div className={`relative overflow-hidden bg-[#ebe4d8] ${className}`}>
-      {src ? (
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
-      ) : (
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 flex flex-col items-center justify-center gap-1 p-6 text-center text-ink/70"
-        >
-          <span className="text-sm font-medium">{label}</span>
-          <span className="text-[11px] uppercase tracking-widest">Photograph pending approval</span>
-        </div>
-      )}
+    <div className={`relative overflow-hidden bg-ink/10 ${className}`}>
+      <Image
+        src={photo.src}
+        alt={photo.alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        quality={70}
+        className="object-cover"
+        style={{ objectPosition: position }}
+      />
     </div>
   );
 }

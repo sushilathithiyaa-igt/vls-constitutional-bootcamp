@@ -1,4 +1,5 @@
-import { contact, faqs, finalCta } from "@/lib/content";
+import Image from "next/image";
+import { contact, course, faqs, finalCta, photos } from "@/lib/content";
 import { Container, Eyebrow } from "./ui";
 
 export function Faq() {
@@ -7,7 +8,7 @@ export function Faq() {
       <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:py-24">
         <div className="lg:col-span-4">
           <Eyebrow>FAQs</Eyebrow>
-          <h2 className="mt-4 font-serif text-3xl font-semibold sm:text-4xl">Questions, answered.</h2>
+          <h2 className="mt-4 font-serif text-3xl font-medium sm:text-4xl">Clear answers before you register.</h2>
         </div>
         <div className="divide-y divide-line border-y border-line lg:col-span-8">
           {faqs.map((f) => (
@@ -33,8 +34,9 @@ export function FinalCta() {
     <section id="final-cta" className="on-dark bg-vls text-white">
       <Container className="flex flex-col items-start gap-6 py-16 sm:py-20 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-2xl">
-          <h2 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl">{finalCta.heading}</h2>
+          <h2 className="font-serif text-3xl font-medium leading-tight sm:text-4xl">{finalCta.heading}</h2>
           <p className="mt-4 leading-relaxed text-white/85">{finalCta.body}</p>
+          <p className="mt-3 text-sm font-semibold">{course.dateLong} · {course.time} · {course.duration} · {course.fee}</p>
         </div>
         <a
           href="#register"
@@ -52,8 +54,8 @@ export function SiteFooter() {
     <footer className="on-dark bg-ink pb-28 text-ivory/80 lg:pb-0">
       <Container className="grid gap-8 py-12 text-sm leading-relaxed md:grid-cols-12">
         <div className="md:col-span-5">
-          <p className="text-[15px] font-bold tracking-[0.12em] text-ivory">VLS LAW ACADEMY</p>
-          <address className="mt-3 not-italic">{contact.address}</address>
+          <Image src={photos.logo.src} alt={photos.logo.alt} width={photos.logo.width} height={photos.logo.height} className="h-16 w-16 bg-white p-1" />
+          <address className="mt-4 not-italic">{contact.address}</address>
         </div>
         <div className="md:col-span-4">
           <p className="font-semibold text-ivory">Contact</p>

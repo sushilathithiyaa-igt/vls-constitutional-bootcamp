@@ -1,12 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { course, photos } from "@/lib/content";
 import { btnPrimary, Container } from "./ui";
 
 const links = [
-  { href: "#syllabus", label: "Syllabus" },
-  { href: "#topics", label: "Petition topics" },
-  { href: "#audience", label: "Who should attend" },
+  { href: "#topics", label: "Topics" },
+  { href: "#learn", label: "What You'll Learn" },
+  { href: "#audience", label: "Who Should Attend" },
   { href: "#faq", label: "FAQs" },
 ];
 
@@ -27,11 +29,13 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-ivory/95 backdrop-blur supports-[backdrop-filter]:bg-ivory/85">
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <a href="#top" className="flex min-h-11 flex-col justify-center leading-tight">
-          <span className="block text-[15px] font-bold tracking-[0.12em] text-vls">VLS LAW ACADEMY </span>
-          <span className="block text-[11px] uppercase tracking-[0.16em] text-muted">Constitutional Law Boot Camp</span>
+    <header className="sticky top-0 z-40 border-b border-line bg-white">
+      <Container className="flex h-16 items-center justify-between gap-4 lg:h-[72px]">
+        <a href="#top" className="flex min-h-11 items-center gap-3">
+          <Image src={photos.logo.src} alt={photos.logo.alt} width={photos.logo.width} height={photos.logo.height} className="h-12 w-12" priority />
+          <span className="hidden text-[11px] font-semibold uppercase leading-tight tracking-[0.16em] text-muted sm:block">
+            Constitutional Law<br />Boot Camp
+          </span>
           <span className="sr-only">, back to top</span>
         </a>
 
@@ -41,8 +45,8 @@ export function SiteHeader() {
               {l.label}
             </a>
           ))}
-          <a href="#register" className={`${btnPrimary} !min-h-10 !px-5 !py-2`}>
-            Enquire
+          <a href="#register" className={`${btnPrimary} !px-5 !py-2`}>
+            Register {course.fee}
           </a>
         </nav>
 
@@ -59,20 +63,15 @@ export function SiteHeader() {
       </Container>
 
       {open && (
-        <nav id="mobile-menu" aria-label="Primary mobile" className="border-t border-line bg-ivory lg:hidden">
+        <nav id="mobile-menu" aria-label="Primary mobile" className="border-t border-line bg-white lg:hidden">
           <Container className="flex flex-col py-2">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-line py-4 text-base font-medium"
-              >
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="border-b border-line py-4 text-base font-medium">
                 {l.label}
               </a>
             ))}
             <a href="#register" onClick={() => setOpen(false)} className={`${btnPrimary} my-4`}>
-              Enquire / Register Now
+              Register for {course.fee}
             </a>
           </Container>
         </nav>

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { readUtm } from "@/lib/attribution";
-import { contact, registration, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/content";
+import { contact, course, registration, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/content";
 import type { EnquiryResponse } from "@/lib/enquiry";
 import {
   LEARNER_STATUSES,
@@ -42,7 +42,7 @@ export function EnquiryForm() {
 
   const whatsappDetails = () => {
     const lines = [
-      "Hello VLS Law Academy, please send me details about the Constitutional Law & Practice Boot Camp.",
+      `Hello VLS Law Academy, I would like to register for the ${course.name} on ${course.dateShort} (${course.fee}). Please share the payment and confirmation details.`,
       `Name: ${values.name.trim()}`,
       `Mobile: ${normalizeIndianMobile(values.mobile)}`,
       `Email: ${values.email.trim()}`,
@@ -193,10 +193,10 @@ export function EnquiryForm() {
       </div>
 
       <button type="submit" disabled={submitting} aria-disabled={submitting} className={`${btnPrimary} w-full disabled:opacity-60 sm:w-auto`}>
-        {submitting ? "Sending…" : registration.primaryCta}
+        {submitting ? "Sending…" : registration.submit}
       </button>
 
-      <p className="text-sm text-muted">{registration.note}</p>
+      <p className="text-sm leading-relaxed text-muted">{registration.note}</p>
 
       <div role="status" aria-live="polite">
         {result.kind === "saved" && (
@@ -223,16 +223,16 @@ export function EnquiryForm() {
         )}
       </div>
 
-      <div className="flex flex-col gap-3 border-t border-line pt-5 sm:flex-row">
+      <div className="flex flex-wrap gap-3 border-t border-line pt-5">
         <a
           href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
-          className={btnSecondary}
+          className={`${btnSecondary} !px-3 text-sm whitespace-nowrap flex-1 basis-[10.5rem]`}
         >
-          <WhatsAppIcon /> {registration.secondaryCta}
+          <WhatsAppIcon /> Chat on WhatsApp
         </a>
-        <a href={contact.courseTel} className={btnSecondary}>
+        <a href={contact.courseTel} className={`${btnSecondary} !px-3 text-sm whitespace-nowrap flex-1 basis-[10.5rem]`}>
           Call {contact.coursePhone}
         </a>
       </div>

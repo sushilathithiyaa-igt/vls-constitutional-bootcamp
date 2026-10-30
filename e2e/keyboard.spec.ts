@@ -42,7 +42,7 @@ test("every one of the first 14 tab stops shows a visible focus indicator and st
   }
   const bad = stops.filter((s) => !s || !(s.outlineStyle !== "none" && s.outlineWidth >= 2) || !s.inView);
   expect(bad, `stops without visible focus: ${JSON.stringify(bad)}`).toEqual([]);
-  expect(stops.some((s) => s?.label.includes("Enquire"))).toBe(true);
+  expect(stops.some((s) => s?.label.includes("Register"))).toBe(true);
   await shot(page, info.project.name, "06-focus");
 });
 
@@ -59,7 +59,7 @@ test("mobile menu works from the keyboard and Escape returns focus to the button
 });
 
 test("empty submit from the keyboard announces errors and focuses the first invalid field", async ({ page }) => {
-  await page.getByRole("button", { name: "Request Course Details" }).focus();
+  await page.getByRole("button", { name: "Submit Registration Enquiry" }).focus();
   await page.keyboard.press("Enter");
   await expect(formAlert(page)).toContainText("5 highlighted fields");
   await expect(page.getByLabel(/Full name/)).toBeFocused();
@@ -81,7 +81,7 @@ test("the whole enquiry can be completed with the keyboard only", async ({ page 
   await kb.press("Space");
   await expect(page.getByLabel(/I agree to be contacted/)).toBeChecked();
   await kb.press("Tab"); // privacy link inside the label is not a stop before the button? either way, reach the button
-  while (!(await page.getByRole("button", { name: /Request Course Details|Sending/ }).evaluate((b) => b === document.activeElement))) {
+  while (!(await page.getByRole("button", { name: /Submit Registration Enquiry|Sending/ }).evaluate((b) => b === document.activeElement))) {
     await kb.press("Tab");
   }
   await kb.press("Enter");

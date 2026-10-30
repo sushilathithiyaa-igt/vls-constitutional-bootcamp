@@ -17,7 +17,7 @@ test("axe: default page has no WCAG A/AA or best-practice violations", async ({ 
 
 test("axe: form error state, open FAQ and open mobile menu", async ({ page }, info) => {
   await page.goto("/#register");
-  await page.getByRole("button", { name: "Request Course Details" }).click();
+  await page.getByRole("button", { name: "Submit Registration Enquiry" }).click();
   await expect(formAlert(page)).toBeVisible();
   expect(summarise(await scan(page)), "form error state").toEqual([]);
 

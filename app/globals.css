@@ -3,11 +3,11 @@
 :root {
   --vls-red: #ae1015;
   --vls-red-dark: #8c0c11;
-  --charcoal: #161616;
-  --ivory: #faf8f5;
+  --charcoal: #111315;
+  --ivory: #f5f1e9;
   --gold: #c8a46b;
   --muted: #5c5a57;
-  --line: #e4ded4;
+  --line: #e0d8c9;
   color-scheme: light;
 }
 
@@ -20,7 +20,7 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+  --font-serif: Georgia, "Times New Roman", Times, serif;
 }
 
 html {

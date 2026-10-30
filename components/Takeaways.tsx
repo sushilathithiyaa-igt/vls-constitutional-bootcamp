@@ -3,11 +3,11 @@ import { Container, Eyebrow } from "./ui";
 
 export function Takeaways() {
   return (
-    <section className="border-b border-line">
+    <section id="learn" className="border-b border-line bg-white">
       <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:py-24">
         <div className="lg:col-span-5">
-          <Eyebrow>What you will take away</Eyebrow>
-          <h2 className="mt-4 font-serif text-3xl font-semibold leading-tight sm:text-4xl">
+          <Eyebrow>Outcomes</Eyebrow>
+          <h2 className="mt-4 font-serif text-3xl font-medium leading-tight sm:text-4xl">
             {takeaways.heading}
           </h2>
           <p className="mt-5 leading-relaxed text-ink/75">{takeaways.support}</p>
